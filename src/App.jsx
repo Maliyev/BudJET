@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Chart from "chart.js/auto";
+import Chat from "./components/Chat/Chat";
 
 function App() {
   const [page, setPage] = useState("home"); // "home" | "analytics" | потом будет "chat"
@@ -30,7 +31,6 @@ function App() {
         },
       },
     });
-
     return () => {
       chart.destroy();
     };
@@ -74,6 +74,15 @@ function App() {
       );
     }
 
+      if (page === "chat") {
+        return (
+          <div className="home-stack chat-home-wrapper">
+            <section className="card chat-card-full-height">
+              <Chat />
+            </section>
+          </div>
+    );
+  }
     // по умолчанию — главная (home)
     return (
       <div className="home-stack">
@@ -136,7 +145,12 @@ function App() {
                 Я заметил изменения в ваших расходах. Хотите узнать подробнее?
               </div>
             </div>
-            <button className="chat-button">Начать чат</button>
+            <button
+  className="chat-button"
+  onClick={() => setPage("chat")}
+>
+  Начать чат
+</button>
           </div>
 
           <img
@@ -246,7 +260,11 @@ function App() {
           </button>
 
           {/* Центр — ИИ (остаётся в центре) */}
-          <button className="nav-item nav-center" type="button">
+            <button
+              className={"nav-item nav-center" + (page === "chat" ? " active" : "")}
+              type="button"
+              onClick={() => setPage("chat")}
+            >
             <div className="nav-center-glow">
               <div className="nav-center-circle">
                 <svg className="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
