@@ -1,6 +1,40 @@
+import { useEffect } from "react";
 import "./App.css";
+import Chart from "chart.js/auto";
+
 
 function App() {
+  
+    useEffect(() => {
+    const canvas = document.getElementById("expensesChart");
+    if (!canvas) return;
+
+    const chart = new Chart(canvas, {
+      type: "pie",
+      data: {
+        labels: ["Продукты", "Транспорт", "Здоровье", "Другое"],
+        datasets: [
+          {
+            data: [320, 110, 50, 20],
+            backgroundColor: ["#F6CD60", "#5BE389", "#66A7FF", "#9B55E2"],
+            borderWidth: 0,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+        },
+      },
+    });
+
+    return () => {
+      chart.destroy();
+    };
+  }, []);
+
   return (
     <div className="app-root">
       <div className="phone-shell">
@@ -28,13 +62,11 @@ function App() {
               <span className="balance-sub">₼1220.00/мес</span>
             </section>
 
-            {/* Pie Chart + Categories */}
+                        {/* Pie Chart + Categories */}
             <section className="card pie-card">
-              <img
-                src="https://storage.googleapis.com/tagjs-prod.appspot.com/v1/yoWSQTTkls/oxj1ue56_expires_30_days.png"
-                alt="Диаграмма расходов"
-                className="pie-image"
-              />
+              <div className="pie-canvas-wrapper">
+                <canvas id="expensesChart"></canvas>
+              </div>
 
               <div className="categories-list">
                 <div className="category-item">

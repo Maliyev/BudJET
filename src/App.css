@@ -362,4 +362,19 @@
 .nav-home.active .nav-icon {
   filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
 }
-  
+
+
+.pie-canvas-wrapper {
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Canvas должен растягиваться на весь контейнер */
+
+#expensesChart {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
