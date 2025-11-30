@@ -1,0 +1,37 @@
+.chat-card-full-height {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.chat-card-full-height .chat-component {
+  height: 100%;
+}
+
+.chat-home-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
+}
+
+.chat-component {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* область сообщений растягивается и скроллится внутри */
+
+.chat-body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* нижняя панель и конфиг — фиксированно внизу */
+
+.chat-footer,
+.chat-config {
+  flex-shrink: 0;
+}
